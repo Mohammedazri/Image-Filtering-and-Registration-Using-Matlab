@@ -1,0 +1,5 @@
+Row	Avant	Apres	Taux_de_corelatoion	Tx_I	Ty_I
+Im_Ref_NF1	X	 	0.985351911779712	-6.34	-0.78
+Im_Ref_NF2	 	X	0	0	0
+Im_Ref_F1	X	 	0	0	0
+Im_Ref_F2	 	X	0	0	0

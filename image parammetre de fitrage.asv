@@ -1,0 +1,67 @@
+close all
+
+clear 
+
+clc
+
+
+
+fprintf("Sélection de l'image de reference \n"); 
+fichiersRecherches = '*.csv'; %selection des fichiers.csv puis ouverture fichier image de reference
+[FileName,PathName] = uigetfile(fichiersRecherches,'Sélectionnez les fichiers qui ont pour extention csv', 'MultiSelect', 'on'); 
+Comma2Dot(fullfile(PathName, FileName));
+Fid = fopen(fullfile(PathName, FileName));
+C   = textscan(Fid, '', -1, 'Delimiter', ';', 'EndOfLine', '\r\n', ...
+                       'CollectOutput', 1);
+fclose(Fid);
+ImageReference= C{1};
+
+
+
+
+fprintf("choix de filtre :\n1-cercle\n2-carre\n");
+
+
+type_of_filtre=input('');
+
+
+if type_of_filtre== 1
+    fprintf("on est dans le cas d un filre cercle rentre la valeur de parametre de filt\n")
+
+D=input('');
+[Im_Ref_filtre] = filtre__cercle_function(ImageRef,D);
+
+
+
+
+
+
+[Im_Ref_filtre] = filtre_carree_function(ImageRef,D);
+
+
+
+
+
+
+figure()
+
+subplot(2,2,1)
+ImRef=imagesc(abs(ImageRef));
+colormap('gray') %couleur gris
+colorbar % barre de(s intensités image
+caxis([1121 4095]);
+title('image de reference');
+xlabel('Xpixel'); 
+ylabel('Ypixel');
+
+
+subplot(2,2,2)
+Im_TF_A_Rec=imagesc(abs(fftshift(fft2(ImageRef))));
+colormap('gray') %couleur gris
+colorbar % barre de(s intensités image
+caxis([0 100000]);
+title('le module de la TF');
+xlabel('Xpixel'); 
+ylabel('Ypixel');
+
+
